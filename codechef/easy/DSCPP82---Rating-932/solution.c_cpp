@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n;
+    if (!(cin >> n)) return 0;
+    
+    // Adjacency list representation
+    vector<int> tree[n];
+    
+    int u, v;
+    for (int i = 0; i < n - 1; i++) {
+        cin >> u >> v;
+        // Adding edge from u to v
+        tree[u].push_back(v);
+    }
+    
+    // Printing only the neighbors as per the required format
+    for (int i = 0; i < n; i++) {
+        for (int node : tree[i]) {
+            cout << node << " ";
+        }
+        cout << "\n";
+    }
+    
+    return 0;
+}
