@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> adj;
+int leafCount = 0;
+
+void dfs(int u) {
+    // If the adjacency list is empty, it's a leaf node
+    if (adj[u].empty()) {
+        leafCount++;
+        return;
+    }
+    
+    // Visit all children
+    for (int v : adj[u]) {
+        dfs(v);
+    }
+}
+
+int main() {
+    int N;
+    if (!(cin >> N)) return 0;
+    
+    // Handle edge case where tree has only 1 node
+    if (N == 1) {
+        cout << 1 << endl;
+        return 0;
+    }
+
+    adj.resize(N);
+    for (int i = 0; i < N - 1; i++) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+    }
+
+    dfs(0);
+    cout << leafCount << endl;
+
+    return 0;
+}
